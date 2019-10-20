@@ -1,3 +1,5 @@
+import math
+
 class Proceso:
     def __init__(self, nombre_proceso, tiempo_disponible, tiempo_ejecucion, cantidad_bloqueo):
         self.disponible = tiempo_disponible
@@ -11,19 +13,22 @@ class Proceso:
         self.tf = 0 # tiempo final
         self.cantidad_bloqueo = cantidad_bloqueo
 
-    def get_tiempo_total(self):
+    def get_tiempo_disponible(self):
+        return self.disponible
+
+    def get_tt(self):
         return self.tt
 
-    def calcular_tiempos(self, tiempo_inicial, tiempo_cambio_contexto, quantum, tiempo_bloqueo):
+    def calcular_tiempos(self, tiempo_inicial, tiempo_cambio_contexto, quantum, tiempo_bloqueo, micro_tcc):
         self.ti = tiempo_inicial
         self.tcc = tiempo_cambio_contexto
-        calcular_tvc(quantum)
-        calcular_tb(tiempo_bloqueo)
-        calculat_tt()
+        self.calcular_tvc(quantum, micro_tcc)
+        self.calcular_tb(tiempo_bloqueo)
+        self.calculat_tt()
         self.tf = self.ti + self.tt
 
-    def calcular_tvc(self, quantum):
-        pass
+    def calcular_tvc(self, quantum, tcc):
+        self.tvc = (math.ceil(self.te / quantum) -1) * tcc
 
     def calcular_tb(self, tiempo_bloqueo):
         self.tb = tiempo_bloqueo * self.cantidad_bloqueo

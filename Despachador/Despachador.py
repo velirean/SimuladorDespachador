@@ -19,7 +19,6 @@ class Despachador:
         # llamar a su metodo ejecutar proceso
         for p in self.proceso:
             self.micro[0].ejecutar_proceso(p)
-            self.micro[1].ejecutar_proceso(p)
         
 
     def datos_js(self):
