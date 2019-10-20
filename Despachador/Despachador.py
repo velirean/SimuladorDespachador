@@ -5,13 +5,28 @@ class Despachador:
         self.quantum = quantum
         self.tb = tiempo_bloqueo
         self.tcc = tiempo_cambio_contexto
-        self.micro = [] # Puede ser un diccionario
+        self.micro = []
+
+        for i in range(0, cantidad_micros):
+            self.micro.append(Micro(i + 1, self.tcc, self.quantum, self.tb))
         # se considera que los procesos ya estan ordenados
         self.proceso = lista_proceso
 
-        # Falta inicializar los micros 
+        self.ejecutar_proceso()
     
-    def ejecutar_proceso():
+    def ejecutar_proceso(self):
         # seleccionar al micro correspondiente
         # llamar a su metodo ejecutar proceso
-        pass
+        for p in self.proceso:
+            self.micro[0].ejecutar_proceso(p)
+            self.micro[1].ejecutar_proceso(p)
+        
+
+    def datos_js(self):
+        # Regresa los datos de cada micro en formato para JS
+        dato = {}
+
+        for m in self.micro:
+            dato.update({ str(m.get_id()) : str(m)})
+
+        return dato

@@ -11,10 +11,10 @@ class Proceso:
         self.tf = 0 # tiempo final
         self.cantidad_bloqueo = cantidad_bloqueo
 
-    def get_tiempo_total():
+    def get_tiempo_total(self):
         return self.tt
 
-    def calcular_tiempos(tiempo_inicial, tiempo_cambio_contexto, quantum, tiempo_bloqueo):
+    def calcular_tiempos(self, tiempo_inicial, tiempo_cambio_contexto, quantum, tiempo_bloqueo):
         self.ti = tiempo_inicial
         self.tcc = tiempo_cambio_contexto
         calcular_tvc(quantum)
@@ -22,13 +22,13 @@ class Proceso:
         calculat_tt()
         self.tf = self.ti + self.tt
 
-    def calcular_tvc(quantum):
+    def calcular_tvc(self, quantum):
         pass
 
-    def calcular_tb(tiempo_bloqueo):
+    def calcular_tb(self, tiempo_bloqueo):
         self.tb = tiempo_bloqueo * self.cantidad_bloqueo
 
-    def calculat_tt():
+    def calculat_tt(self):
         self.tt = self.tcc + self.te + self.tvc + self.tb
 
     def __str__(self):
