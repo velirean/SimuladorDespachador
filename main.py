@@ -13,11 +13,6 @@ with open("main.html", encoding="utf-8") as page:
     html_code = BeautifulSoup(page.read(), features="html.parser").decode('utf-8')
 
 def main():
-    # Crear lista de procesos para el despachador en una funcion
-
-
-  
-
     settings = {
         "debug": False,
         "context_menu": {"enabled":False}
@@ -28,9 +23,9 @@ def main():
     browser.SetClientHandler(LifespanHandler())
     bindings = cef.JavascriptBindings()
 
+    pyjs = PythonJS() # Crea el objeto con los procesos iniciales e inicia el despachador
     # Une las funciones de python a javascript
-
-    bindings.SetFunction("py_despachador", PythonJS.py_html_despachador)
+    bindings.SetFunction("py_despachador", pyjs.py_despachador)
 
     browser.SetJavascriptBindings(bindings)
     cef.MessageLoop()

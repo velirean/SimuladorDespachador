@@ -31,4 +31,6 @@ class Proceso:
     def calculat_tt():
         self.tt = self.tcc + self.te + self.tvc + self.tb
 
-    
+    def __str__(self):
+        datos = "{disponible},{nombre},{tcc},{te},{tvc},{tb},{tt},{ti},{tf}".format(disponible=self.disponible, nombre=self.nombre, tcc=self.tcc, te=self.te, tvc=self.tvc, tb=self.tb, tt=self.tt, ti=self.ti, tf=self.tf)
+        return datos

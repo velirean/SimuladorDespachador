@@ -19,3 +19,6 @@ class Micro:
     def esperar(tiempo):
         self.tt += tiempo
         estaOcupado = False
+
+    def js_str():
+        pass
