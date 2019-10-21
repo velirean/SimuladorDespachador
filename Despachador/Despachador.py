@@ -23,6 +23,21 @@ class Despachador:
         for p in self.proceso:
             # seleccionar al micro correspondiente
             micro_actual = self.seleccionar_micro()
+            
+            # Cuando el micro seleccionado tiene que esperar se 
+            # vuelve necesario que todos los micros esperen porque
+            # uno podria tener un id mas bajo y estaria disponible
+            # al aparecer el proceso. Esto maneja esa situacion.
+            if micro_actual["micro"].get_tt() < p.get_tiempo_disponible():
+                for m in self.micro:
+                    # Solo a los micros en esa situacion
+                    if m["micro"].get_tt() < p.get_tiempo_disponible():
+                        tiempo_espera = p.get_tiempo_disponible() - m["micro"].get_tt()
+                        m["micro"].esperar(tiempo_espera)
+                        m["tt"] = m["micro"].get_tt()
+                # Seleccionar de nuevo, debido a la actualizacion
+                micro_actual = self.seleccionar_micro()
+
             micro_actual["micro"].ejecutar_proceso(p)
             micro_actual["tt"] = micro_actual["micro"].get_tt()
 

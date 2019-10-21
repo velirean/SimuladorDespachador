@@ -2,7 +2,14 @@
 // se llamen las funciones de python
 
 function crear_despachador() {
-	py_despachador(js_mostrar_info_micro);
+    document.getElementById("contenido").innerHTML = ``;
+
+    var quantum = document.getElementById("quantum").value;
+    var tb = document.getElementById("tb").value;
+    var tcc = document.getElementById("tcc").value;
+    var cantidad_micros = document.getElementById("micros").value;
+    
+	py_despachador(js_mostrar_info_micro, quantum, tb, tcc, cantidad_micros);
 }
 
 function js_mostrar_info_micro(id_micro, string_datos) {

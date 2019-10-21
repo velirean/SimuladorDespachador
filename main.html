@@ -5,10 +5,40 @@
     <link rel="stylesheet" type="text/css" href="http://localhost:8080/bootstrap.min.css">
     <script type="text/javascript" src=http://localhost:8080/display.js></script>
 </head>
-<body style="padding-top: 80px;" onload="crear_despachador();">
+<body style="padding-top: 80px;" onload="document.getElementById('quantum').focus();">
     <div class="container-fluid">
         <nav class="navbar fixed-top navbar-dark bg-dark">
-            <span class="navbar-brand mr-auto" style="cursor: default;" id="title" href="#">Despachador de Procesos</span>
+            <span class="navbar-brand mr-auto" style="cursor: default;" id="title" href="#">Despachador Bellaco</span>
+            <form class="form-inline my-2 my-lg-0" action="" method="post" id="nums" onsubmit="return crear_despachador()">
+                    <div class="input-group input-group-sm mr-sm-2">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="quantum">Quantum</label>  
+                        </div>
+                        <input class="form-control" style="width: 90px" type="text" id="quantum">
+                    </div>
+
+                    <div class="input-group input-group-sm mr-sm-2">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="tb">TB</label>  
+                        </div>
+                        <input class="form-control" style="width: 90px" type="text" id="tb">
+                    </div>
+
+                    <div class="input-group input-group-sm mr-sm-2">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="tcc">TCC</label>  
+                        </div>
+                        <input class="form-control" style="width: 90px" type="text" id="tcc">
+                    </div>
+
+                    <div class="input-group input-group-sm mr-sm-2">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="micros"># Micros</label>  
+                        </div>
+                        <input class="form-control" style="width: 90px" type="text" id="micros">
+                    </div>
+                    <button class="btn btn-sm btn-success my-2 my-sm-0" type="submit">Ejecutar</button>
+                </form>
         </nav>
 
         <div id="contenido"></div>

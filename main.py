@@ -19,7 +19,7 @@ def main():
     }
     cef.Initialize(settings=settings)
     browser = cef.CreateBrowserSync(url=cef.GetDataUrl(html_code),
-                                    window_title="Random Number Generator")
+                                    window_title="Despachador Bellaco")
     browser.SetClientHandler(LifespanHandler())
     bindings = cef.JavascriptBindings()
 
