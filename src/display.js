@@ -13,7 +13,7 @@ function crear_despachador() {
 }
 
 function js_mostrar_info_micro(id_micro, string_datos) {
-	var html = `<h1>Micro ${id_micro}</h1>`;
+	var html = `<h1 class="text-light">Micro ${id_micro}</h1>`;
 
 	html += `
 		<table class="table table-dark table-striped">
