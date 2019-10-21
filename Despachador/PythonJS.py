@@ -37,7 +37,7 @@ class PythonJS:
         self.despachador = Despachador(self.quantum, self.tb, self.tcc, self.cantidad_micros, self.proceso)
 
     def py_despachador(self, js_mostrar_info_micro):
-        self.crear_despachador(3000, 10, 10, 1)
+        self.crear_despachador(3000, 15, 15, 16)
         info_micro = self.despachador.datos_js()
 
         for k, v in info_micro.items():

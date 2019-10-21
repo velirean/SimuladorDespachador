@@ -1,4 +1,5 @@
 from Despachador import Micro
+from operator import itemgetter
 
 class Despachador:
     def __init__(self, quantum, tiempo_bloqueo, tiempo_cambio_contexto, cantidad_micros, lista_proceso):
@@ -8,17 +9,31 @@ class Despachador:
         self.micro = []
 
         for i in range(0, cantidad_micros):
-            self.micro.append(Micro(i + 1, self.tcc, self.quantum, self.tb))
+            self.micro.append({
+                "id" : i + 1,
+                "tt" : 0,
+                "micro" : Micro(i + 1, self.tcc, self.quantum, self.tb)
+            })
         # se considera que los procesos ya estan ordenados
         self.proceso = lista_proceso
 
         self.ejecutar_proceso()
     
     def ejecutar_proceso(self):
-        # seleccionar al micro correspondiente
-        # llamar a su metodo ejecutar proceso
         for p in self.proceso:
-            self.micro[0].ejecutar_proceso(p)
+            # seleccionar al micro correspondiente
+            micro_actual = self.seleccionar_micro()
+            micro_actual["micro"].ejecutar_proceso(p)
+            micro_actual["tt"] = micro_actual["micro"].get_tt()
+
+    def seleccionar_micro(self):
+        # Para que el ordenamiento sea correcto el orden es inverso
+        # Primero por id y despues por tiempo total de cada micro
+        # y asi se obtiene el orden buscado: tiempo ascendente y 
+        # despues por id descendente
+        micro_ordenado = sorted(self.micro, key=itemgetter('id'))
+        micro_ordenado = sorted(micro_ordenado, key=itemgetter('tt'))
+        return micro_ordenado[0]
         
 
     def datos_js(self):
@@ -26,6 +41,6 @@ class Despachador:
         dato = {}
 
         for m in self.micro:
-            dato.update({ str(m.get_id()) : str(m)})
+            dato.update({ str(m["micro"].get_id()) : str(m["micro"])})
 
         return dato

@@ -34,10 +34,13 @@ class Micro:
     def get_id(self):
         return self.id
 
+    def get_tt(self):
+        return self.tt
+
     def esperar(self, tiempo):
         # Esperar se maneja como un proceso
         proceso_espera = Proceso("Espera", 0, tiempo, 0)
-        proceso_espera.calcular_tiempos(self.tt, 0, 0, tiempo, 0)
+        proceso_espera.calcular_tiempos(self.tt, 0, tiempo, 0, 0)
         self.proceso.append(proceso_espera)
         self.tt += tiempo
         self.estaOcupado = False
