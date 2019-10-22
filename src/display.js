@@ -3,13 +3,19 @@
 
 function crear_despachador() {
     document.getElementById("contenido").innerHTML = ``;
+    document.getElementById("mensajes").innerHTML = ``;
 
     var quantum = document.getElementById("quantum").value;
     var tb = document.getElementById("tb").value;
     var tcc = document.getElementById("tcc").value;
     var cantidad_micros = document.getElementById("micros").value;
     
-	py_despachador(js_mostrar_info_micro, quantum, tb, tcc, cantidad_micros);
+	py_despachador(js_mostrar_info_micro, js_mostrar_mensaje, quantum, tb, tcc, cantidad_micros);
+}
+
+function js_mostrar_mensaje(mensaje) {
+    var html = `<div class="alert alert-secondary" role="alert">${mensaje}</div>`;
+    document.getElementById("mensajes").innerHTML += html;
 }
 
 function js_mostrar_info_micro(id_micro, string_datos) {

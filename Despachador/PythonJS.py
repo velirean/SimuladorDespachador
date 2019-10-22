@@ -23,10 +23,38 @@ class PythonJS:
             Proceso("Ñ", 8000,  500, 3) 
         ]
 
-    def py_despachador(self, js_mostrar_info_micro, quantum, tiempo_bloqueo, tiempo_cambio_contexto, cantidad_micros):
-        despachador = Despachador(int(quantum), int(tiempo_bloqueo), int(tiempo_cambio_contexto), int(cantidad_micros), self.proceso)
-        info_micro = despachador.datos_js()
+    def py_despachador(self, js_mostrar_info_micro, js_mostrar_mensaje, quantum, tiempo_bloqueo, tiempo_cambio_contexto, cantidad_micros):
+        if self.are_positive_integers(quantum, tiempo_bloqueo, tiempo_cambio_contexto, cantidad_micros):
+            quantum = int(quantum) 
+            tiempo_bloqueo = int(tiempo_bloqueo)
+            tiempo_cambio_contexto = int(tiempo_cambio_contexto)
+            cantidad_micros = int(cantidad_micros)
+            if cantidad_micros >= 1 and quantum >= 1:
+                despachador = Despachador(quantum, tiempo_bloqueo, tiempo_cambio_contexto, cantidad_micros, self.proceso)
+                info_micro = despachador.datos_js()
 
-        for k, v in info_micro.items():
-            js_mostrar_info_micro.Call(k, v)
+                for k, v in info_micro.items():
+                    js_mostrar_info_micro.Call(k, v)
+            else:
+                js_mostrar_mensaje.Call("Debe haber al menos un micro y el quantum debe ser mayor a cero.")
 
+        else:
+            js_mostrar_mensaje.Call("Todos los valores deben ser enteros.")
+
+
+    def are_positive_integers(self, *num):
+        all_integers = True
+
+        for n in num:
+            all_integers = self.is_integer(n) and (int(n) >= 0)
+            if not all_integers:
+                break
+        return all_integers
+
+    def is_integer(self, number):
+        try:
+            number = int(number)
+        except ValueError:
+            return False
+        else:
+            return True
