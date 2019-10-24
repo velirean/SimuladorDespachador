@@ -18,6 +18,7 @@ class Despachador:
         self.proceso = lista_proceso
 
         self.ejecutar_proceso()
+        self.limpiar_micro()
     
     def ejecutar_proceso(self):
         for p in self.proceso:
@@ -40,6 +41,10 @@ class Despachador:
 
             micro_actual["micro"].ejecutar_proceso(p)
             micro_actual["tt"] = micro_actual["micro"].get_tt()
+
+    def limpiar_micro(self):
+        for m in self.micro:
+            m["micro"].limpiar_micro()
 
     def seleccionar_micro(self):
         # Para que el ordenamiento sea correcto el orden es inverso

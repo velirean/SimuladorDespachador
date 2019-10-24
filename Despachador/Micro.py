@@ -31,6 +31,16 @@ class Micro:
         # Ahora el micro esta ocupado con este proceso
         self.estaOcupado = True
 
+    def limpiar_micro(self):
+        esperas_sobrantes = 0
+        for p in reversed(self.proceso):
+            if p.get_nombre() == "Espera":
+                esperas_sobrantes += 1
+            else:
+                break
+        for i in range(0, esperas_sobrantes):
+            self.proceso.pop()
+
     def get_id(self):
         return self.id
 

@@ -13,6 +13,9 @@ class Proceso:
         self.tf = 0 # tiempo final
         self.cantidad_bloqueo = cantidad_bloqueo
 
+    def get_nombre(self):
+        return self.nombre
+
     def get_tiempo_disponible(self):
         return self.disponible
 
